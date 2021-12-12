@@ -6,6 +6,7 @@ import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProviders
 import com.example.apod.R
 import com.example.apod.viewModel.APODDataVM
@@ -17,6 +18,7 @@ class HomePageActivity : AppCompatActivity() {
     var datePickerDialog: DatePickerDialog? = null
     var datePickerET: EditText ?= null
     var apodDataVM: APODDataVM ?= null
+    var datePickerCard: CardView ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class HomePageActivity : AppCompatActivity() {
 
     fun initViews(){
         datePickerET = findViewById<View>(R.id.datePickerET) as EditText
+        datePickerCard = findViewById(R.id.datePickerCard)
         datePickerET?.inputType = InputType.TYPE_NULL
         apodDataVM = ViewModelProviders.of(this).get(APODDataVM::class.java)
     }
@@ -41,14 +44,13 @@ class HomePageActivity : AppCompatActivity() {
             // date picker dialog, date: YYYY-MM-DD
             datePickerDialog = DatePickerDialog(this@HomePageActivity,
                 { view, year, monthOfYear, dayOfMonth ->
-                    val date: String =
-                        year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth.toString()
+                    val date: String = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth.toString()
                     datePickerET?.setText(date)
                     apodDataVM?.fetchAPODData(date)
 
                 }, year, month, day
             )
-
+            datePickerDialog?.getDatePicker()?.setMaxDate(System.currentTimeMillis());
             datePickerDialog?.show()
         }
 
