@@ -1,5 +1,7 @@
 package com.example.apod.viewModel
 
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.apod.model.APODImageData

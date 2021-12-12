@@ -34,15 +34,22 @@ public class APIManager {
         if (mApiService == null) {
             Retrofit restAdapter = new Retrofit.Builder()
                     .baseUrl(ServerConfig.getBaseUrl())
-                    .client(getOkHttpClient())
+                    //.client(getOkHttpClient())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
             mApiService = restAdapter.create(APIService.class);
         }
         return mApiService;
     }
 
+
+    /*
+     .baseUrl(NetworkConstants.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+    *
+    */
 
     private OkHttpClient getOkHttpClient() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
