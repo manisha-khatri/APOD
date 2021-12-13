@@ -33,11 +33,11 @@ class APODDataVM: ViewModel() {
     }
 
     fun onFetchAPODDataSuccess(apodImageData: APODImageData) {
-        TODO("Not yet implemented")
+        viewState.value = HomePageState.Success(apodImageData)
     }
 
     fun onFetchAPODDataError(throwable: Throwable) {
-        TODO("Not yet implemented")
+        viewState.value = HomePageState.Error(throwable.message.toString())
     }
 
     override fun onCleared() {
