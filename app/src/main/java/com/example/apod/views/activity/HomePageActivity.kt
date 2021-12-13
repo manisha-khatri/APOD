@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.apod.R
 import com.example.apod.viewModel.APODDataVM
 import com.example.apod.views.state.HomePageState
+import kotlinx.android.synthetic.main.activity_home_page.*
 import java.util.*
 
 class HomePageActivity : AppCompatActivity() {
@@ -58,6 +59,8 @@ class HomePageActivity : AppCompatActivity() {
             when (it) {
                 is HomePageState.Success -> {
                     // tvUserName.text = it.data.name
+                    apodDataContainer.visibility = View.VISIBLE
+
                 }
                 is HomePageState.Error -> {
                     //   tvError.text = it.message
